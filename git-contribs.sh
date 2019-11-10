@@ -105,18 +105,17 @@ long_usage() {
 
 backup_contributions() {
     for r in ${repos}; do
-        # Create a headless branch for the repository
-        (
-            cd "${destination}"
-            git checkout --orphan $(basename "${r}")
-            git rm -rf ./* > /dev/null 2>&1 || true
-        )
+        repo_name=$(basename "${r}")
 
         # Find all commits matching the specified authors
         commits=$(
             cd "${r}"
-            git log --author="${author_pattern_string}" --format='format:%ae %aI' --all
         )
+
+        if [ ! -z "${commits}" ]; then
+            # Create a directory for the repository
+            (cd "${destination}"; mkdir -p "${repo_name}")
+        fi
 
         ifs_bkp=$IFS
         IFS=$'\n'
@@ -130,8 +129,8 @@ backup_contributions() {
 
             (
                 cd "${destination}"
-                echo "${message}" >> "${timestamp}.txt"
-                git add -f "${timestamp}.txt"
+                echo "${message}" >> "${repo_name}/${timestamp}.txt"
+                git add -f "${repo_name}/${timestamp}.txt"
                 git commit --date="${timestamp}" -m "${message}"
             )
         done
