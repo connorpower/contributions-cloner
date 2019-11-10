@@ -109,6 +109,7 @@ backup_contributions() {
         # Find all commits matching the specified authors
         commits=$(
             cd "${r}"
+            git log --author="${author_pattern_string}" --format='format:%ae %aI' --all --reverse
         )
 
         if [ ! -z "${commits}" ]; then
