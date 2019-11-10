@@ -64,7 +64,6 @@ main() {
 
     author_pattern_string=$(printf '\|%s' "${authors[@]}")
     author_pattern_string=${author_pattern_string:2}
-    echo "author_pattern_string: ${author_pattern_string}"
 
     backup_contributions
 }
