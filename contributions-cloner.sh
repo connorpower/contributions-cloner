@@ -8,7 +8,7 @@ set -e
 
 readonly DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 readonly SCRIPT=$(basename "${0}")
-readonly DEFAULT_DESTINATION="${DIR}/git-contribs"
+readonly DEFAULT_DESTINATION="${DIR}/contributions"
 
 ###############################################################################
 ## Constants
@@ -79,12 +79,15 @@ short_usage() {
 long_usage() {
     short_usage
     echo ""
-    echo "${SCRIPT} creates a backup of contributions made to a repository in order to preserve"
-    echo "the GitHub contributions graph when leaving a GitHub Organization. For any commit found"
-    echo "by a specified author email, a dummy file will be created and comitted with a timestamp"
-    echo "equal to the original commit. Dummy commits corresponding to each of the repositoreis"
-    echo "will be created on their own headless branches in the 'destination-repository'. No"
-    echo "information will be copied from the source repositories other the date of the commit."
+    echo "${SCRIPT} clones commit timestamps in order to preserve your GitHub contribution graph"
+    echo "when leaving a GitHub organization that a repository belongs to. No source code or"
+    echo "otherwise identifying information is cloned other than '<your email> comitted on"
+    echo "<timestamp>'. This is all the information that the GitHub contributions graph requires."
+    echo ""
+    echo "${SCRIPT} works by scanning a list of repositoreis for any commits authored by your email"
+    echo "and creating a dummy placeholder file in a backup repository in it's place with the same"
+    echo "timestamp as the original commit. No information will be copied from the source "
+    echo "repositories other the date of the commit."
     echo ""
     echo "    Options:"
     echo "        --help | -h"
