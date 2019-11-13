@@ -97,7 +97,7 @@ long_usage() {
     echo "            listed repositories, will result in a dummy commit being created."
     echo "        -d destination"
     echo "            The repository into which the dummy commits will be made. If not specified,"
-    echo "            this will default to './git-contribs'."
+    echo "            this will default to './contributions'."
     echo ""
     echo "    Arguments:"
     echo "        repo"
