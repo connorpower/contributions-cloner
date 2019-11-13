@@ -2,7 +2,7 @@
 
 ![GitHub Contributions Graph](docs/contributions-graph.png)
 
-[GitHub Contributions](https://bit.ly/2CJpXNW). They're an eclectic thing to
+[GitHub Contributions](https://bit.ly/2CJpXNW). They're an eccentric thing to
 care about – but for many engineers they're a great visual overview of a life's
 work. It's worth dedicating a few minutes to ensuring that your contributions
 are backed up.
