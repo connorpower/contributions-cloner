@@ -15,7 +15,6 @@ readonly DEFAULT_DESTINATION="${DIR}/contributions"
 ###############################################################################
 
 main() {
-
     if [ "${1}" = "help" ] || [ "${1}" = "--help" ]; then
         long_usage
         return 0
@@ -73,36 +72,42 @@ main() {
 ###############################################################################
 
 short_usage() {
-    echo "Usage: ${SCRIPT} [-h|--help] -a email1 [-a email2, -a ...] [-d destination] repo1 [repo2, ...]" 1>&2
+    echo "Usage: ${SCRIPT} [-h|--help] -a email1 [-a email2, -a ...]"
+    echo "       [-d destination] repo1 [repo2, ...]"
 }
 
 long_usage() {
     short_usage
     echo ""
-    echo "${SCRIPT} clones commit timestamps in order to preserve your GitHub contribution graph"
-    echo "when leaving a GitHub organization that a repository belongs to. No source code or"
-    echo "otherwise identifying information is cloned other than '<your email> comitted on"
-    echo "<timestamp>'. This is all the information that the GitHub contributions graph requires."
+    echo "${SCRIPT} clones commit timestamps in order to preserve your"
+    echo "GitHub contribution graph when leaving a GitHub organization that"
+    echo "a repository belongs to. No source code or otherwise identifying"
+    echo "information is cloned other than '<your email> comitted on"
+    echo "<timestamp>'. This is all the information that the GitHub"
+    echo "contributions graph requires."
     echo ""
-    echo "${SCRIPT} works by scanning a list of repositoreis for any commits authored by your email"
-    echo "and creating a dummy placeholder file in a backup repository in it's place with the same"
-    echo "timestamp as the original commit. No information will be copied from the source "
-    echo "repositories other the date of the commit."
+    echo "${SCRIPT} works by scanning a list of repositoreis for any"
+    echo "commits authored by your email and creating a dummy placeholder file"
+    echo "in a backup repository in it's place with the same timestamp as the"
+    echo "original commit. No information will be copied from the source"
+    echo "source repos other the date of the commit."
     echo ""
     echo "    Options:"
     echo "        --help | -h"
     echo "            Prints this menu"
     echo "        -a email"
-    echo "            A list of author emails which, if responsible for a commit in any of the"
-    echo "            listed repositories, will result in a dummy commit being created."
+    echo "            A list of author emails which, if responsible for a"
+    echo "            commit in any of the listed repositories, will result in"
+    echo "            a dummy commit being created."
     echo "        -d destination"
-    echo "            The repository into which the dummy commits will be made. If not specified,"
-    echo "            this will default to './contributions'."
+    echo "            The repository into which the dummy commits will be"
+    echo "            made. If not specified, this will default to"
+    echo "            './contributions'."
     echo ""
     echo "    Arguments:"
     echo "        repo"
-    echo "            A list of local git repositories which will be scanned for commits made by"
-    echo "            the specified author emails."
+    echo "            A list of local git repositories which will be scanned"
+    echo "            for commits made by the specified author emails."
 }
 
 backup_contributions() {
@@ -112,7 +117,11 @@ backup_contributions() {
         # Find all commits matching the specified authors
         commits=$(
             cd "${r}"
-            git log --author="${author_pattern_string}" --format='format:%ae %aI' --all --reverse
+            git log \
+                --author="${author_pattern_string}" \
+                --format='format:%ae %aI' \
+                --all \
+                --reverse
         )
 
         if [ ! -z "${commits}" ]; then
