@@ -1,10 +1,11 @@
 # contributions-cloner
 
+![GitHub Contributions Graph](docs/contributions-graph.png)
+
 [GitHub Contributions](https://bit.ly/2CJpXNW). They're an eclectic thing to
 care about – but for many engineers they're a great visual overview of a life's
 work. It's worth dedicating a few minutes to ensuring that your contributions
 are backed up.
-![GitHub Contributions Graph](docs/contributions-graph.png)
 
 Contributions might be missing for several reasons:
 - You've been working on a project outside of GitHub, hosted in-house or
@@ -26,12 +27,8 @@ you made in any private repositories and make a dummy backdated commit in
 a new repository. You can then push this backup respository to your GitHub
 profile and set it's visibility to private.
 
-## Pull Requests and Issues
 
-This script currently ignores pull requests and issues which also count
-towards your GitHub contributions.
-
-## Usage
+### Usage
 
 ```
 Usage: ./contributions-cloner.sh [-h|--help] -a email1 [-a email2, -a ...]
@@ -66,3 +63,9 @@ commit.
             made by the specified author emails.
 ```
 
+## Known Issues
+
+### Pull Requests and Issues
+
+This script currently ignores pull requests and issues which also count
+towards your GitHub contributions.
