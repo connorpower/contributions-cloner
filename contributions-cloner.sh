@@ -36,7 +36,7 @@ main() {
                 destination=("$OPTARG")
                 ;;
             *)
-                short_usage
+                echo $(short_usage) 1>&2
                 return 1
                 ;;
         esac
@@ -47,13 +47,13 @@ main() {
 
     if [ ${#authors[@]} -lt 1 ]; then
         echo -e "At least one author email must be specified.\n" 1>&2
-        short_usage
+        echo $(short_usage) 1>&2
         return 1
     fi
 
     if [ -z "${repos}" ]; then
         echo -e "At least one source repository must be specified.\n" 1>&2
-        short_usage
+        echo $(short_usage) 1>&2
         return 1
     fi
 
